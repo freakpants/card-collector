@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/card-collector/static/css/main.827589d4.css",
+    "main.js": "/card-collector/static/js/main.520cf71a.js",
+    "static/media/worldcup_dark.png": "/card-collector/static/media/worldcup_dark.4c82ff050602fbb9a228.png",
+    "static/media/cards_bg_e_1_21_0.png": "/card-collector/static/media/cards_bg_e_1_21_0.ebc0d41c65c6b25b034b.png",
+    "static/media/MATROSKA.ttf.svg": "/card-collector/static/media/MATROSKA.ttf.36d972b523b1d230880a.svg",
+    "static/media/cards_bg_e_1_72_0.png": "/card-collector/static/media/cards_bg_e_1_72_0.501f5d6068205353cad1.png",
+    "static/media/cards_bg_e_1_12_0.png": "/card-collector/static/media/cards_bg_e_1_12_0.deae06a0baf62bd15f08.png",
+    "static/media/cards_bg_e_1_0_3.png": "/card-collector/static/media/cards_bg_e_1_0_3.3942b9585b90f3a3af8c.png",
+    "static/media/cards_bg_e_1_1_1.png": "/card-collector/static/media/cards_bg_e_1_1_1.1200549df01872a38c8c.png",
+    "static/media/cards_bg_e_1_0_1.png": "/card-collector/static/media/cards_bg_e_1_0_1.531d2c2a3fea78e0003f.png",
+    "static/media/cards_bg_e_1_1_2.png": "/card-collector/static/media/cards_bg_e_1_1_2.232a890077ef28c4a107.png",
+    "static/media/cards_bg_e_1_1_3.png": "/card-collector/static/media/cards_bg_e_1_1_3.dd866df2a5498ecdddd5.png",
+    "static/media/cards_bg_e_1_0_2.png": "/card-collector/static/media/cards_bg_e_1_0_2.9aadfa1bbd5f73e8eb7a.png",
+    "static/media/cards_bg_e_1_52_0.png": "/card-collector/static/media/cards_bg_e_1_52_0.d8f753ba4159a63f4bf2.png",
+    "static/media/cards_bg_e_1_3_3.png": "/card-collector/static/media/cards_bg_e_1_3_3.3e11b2b7abe6cf2ad81d.png",
+    "static/media/MATROSKA.ttf.eot": "/card-collector/static/media/MATROSKA.ttf.1facc6e0a79a0ea22059.eot",
+    "static/media/cards_bg_e_1_53_0.png": "/card-collector/static/media/cards_bg_e_1_53_0.cf5b0c705b1b7e6e19a4.png",
+    "static/media/Qatar2022Arabic-Bold.woff": "/card-collector/static/media/Qatar2022Arabic-Bold.1f403b642d5a8e342bc1.woff",
+    "static/media/MATROSKA.ttf.woff": "/card-collector/static/media/MATROSKA.ttf.c4d124f2a20b28b05975.woff",
+    "static/media/UltimateTeamCondensed.woff": "/card-collector/static/media/UltimateTeamCondensed.faca749167dc9d71ff77.woff",
+    "static/media/UltimateTeam-Icons.woff": "/card-collector/static/media/UltimateTeam-Icons.4ce90d80cd304b60c8f0.woff",
+    "index.html": "/card-collector/index.html",
+    "main.827589d4.css.map": "/card-collector/static/css/main.827589d4.css.map",
+    "main.520cf71a.js.map": "/card-collector/static/js/main.520cf71a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.827589d4.css",
+    "static/js/main.520cf71a.js"
+  ]
+}
