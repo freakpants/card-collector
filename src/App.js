@@ -209,7 +209,7 @@ class App extends Component {
     let player = definitionId;
     console.log("clicked player: " + player);
     let players = this.state.players;
-    if (players.includes(player)) {
+    if (players && players.length > 0 && players.includes(player)) {
       players = players.filter((item) => item !== player);
     } else {
       players.push(player);
