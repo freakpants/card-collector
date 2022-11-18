@@ -208,7 +208,7 @@ class App extends Component {
     if(subCollection === this.state.subCollection) {
       subCollection = "none";
     }
-    this.setState({ subCollection: subCollection });
+    this.setState({ subCollection: subCollection, currentPage: 1 });
 
   }
 
@@ -457,8 +457,10 @@ class App extends Component {
         <div id="counts">
           <div id="counts-total">
             <span className="counts-total-label">Collected: </span>
+            { this.state.wcPlayers && this.state.wcPlayers.length > 0 && this.state.players && this.state.players.length > 0 &&(
             <span className="counts-total-value">{wcPlayersCollected} of {this.state.wcPlayers.length} (
              {Math.floor(100 / this.state.wcPlayers.length * this.state.players.length)}%)</span>
+            )}
           </div>
           <div id="counts-current">
             <span className="counts-current-label">Current Selection: </span>
