@@ -35,7 +35,7 @@ class App extends Component {
       rarities: [],
       players: [],
       currentPage: 1,
-      clubSync: false,
+      clubSync: true,
     };
 
     this.handleSingleSelect = this.handleSingleSelect.bind(this);
@@ -1003,7 +1003,7 @@ class App extends Component {
             <span className="counts-total-label">Collected: </span>
             { this.state.wcPlayers && this.state.wcPlayers.length > 0 && this.state.players && this.state.players.length > 0 &&(
             <span className="counts-total-value">{wcPlayersCollected} of {this.state.wcPlayers.length} (
-             {Math.floor(100 / this.state.wcPlayers.length * this.state.players.length)}%)</span>
+             {Math.floor(100 / this.state.wcPlayers.length * wcPlayersCollected)}%)</span>
             )}
           </div>
           <div id="counts-current">
