@@ -28,7 +28,7 @@ class App extends Component {
       collections: [{ name: "World Cup Players", value: "wcplayers" }],
       wcPlayers: [],
       wcCountries: [],
-      collection: "none",
+      collection: "wcplayers",
       subCollection: "none",
       rarities: [],
       players: [],
@@ -250,7 +250,7 @@ class App extends Component {
     console.log("trying to render");
 
 
-
+    const stateHasPlayers = this.state.players && this.state.players.length > 0;
     let wcPlayers = this.state.wcPlayers;
 
     // filter by team if needed
@@ -260,6 +260,21 @@ class App extends Component {
       });
     }
 
+    const filteredCount = wcPlayers.length;
+
+    let currentCollected = 0;
+    wcPlayers.forEach((wcPlayer) => {
+      let player = false;
+      if(stateHasPlayers) {
+        player = this.state.players.find(
+          (player) => player === wcPlayer.definitionId
+        );
+      }
+      if (player) {
+        currentCollected++;
+      } 
+    });
+    
 
     // determine number of pages
     let pages = Math.ceil(wcPlayers.length / 40);
@@ -273,7 +288,7 @@ class App extends Component {
       currentPage * 40
     );
 
-    const stateHasPlayers = this.state.players && this.state.players.length > 0;
+   
     wcPlayers.forEach((wcPlayer) => {
       let player = false;
       if(stateHasPlayers) {
@@ -410,6 +425,7 @@ class App extends Component {
           })}
         </div>
         {this.state.collection === "wcplayers" && (
+        <React.Fragment>
         <div id="pagination">
           <Pagination
             count={pages}
@@ -418,6 +434,20 @@ class App extends Component {
             color="primary"
           />
         </div>
+        <div id="counts">
+          <div id="counts-total">
+            <span className="counts-total-label">Collected: </span>
+            <span className="counts-total-value">{this.state.players.length} of {this.state.wcPlayers.length} (
+             {Math.floor(100 / this.state.wcPlayers.length * this.state.players.length)}%)</span>
+          </div>
+          <div id="counts-current">
+            <span className="counts-current-label">Current Selection: </span>
+            <span className="counts-current-value">{currentCollected} of {filteredCount} (
+            {Math.floor(100 / filteredCount * currentCollected)}%)
+            </span>
+          </div>
+        </div>
+        </React.Fragment>
         )}
 
       </ThemeProvider>

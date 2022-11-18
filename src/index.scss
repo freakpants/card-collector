@@ -1110,3 +1110,11 @@ label:not(.MuiFormControlLabel-root)::before{
 .card__wrapper{
   cursor: pointer;
 }
+
+#counts{
+  position: absolute;
+  left: 18rem;
+  bottom: 0;
+  background: white;
+  padding: 0.5rem;
+}
