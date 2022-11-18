@@ -20,6 +20,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Accordion, AccordionDetails, AccordionSummary, Pagination } from "@mui/material";
 import PlayerCard from "./PlayerCard";
 
+import axios from "axios";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -173,8 +175,8 @@ class App extends Component {
       }); */
 
       // get owned players
-      /* 
-      axios
+      
+      /* axios
       .post(
         process.env.REACT_APP_AJAXSERVER +
           "getOwnedPlayers.php" +
@@ -183,6 +185,11 @@ class App extends Component {
       .then((response) => {
         // manipulate the response here
         let players = response.data;
+        // only use definitionId
+        players = players.map((player) => {
+          return player.definitionId;
+        });
+
         this.setState({ players: players });
       }); */
 
@@ -252,6 +259,19 @@ class App extends Component {
 
     const stateHasPlayers = this.state.players && this.state.players.length > 0;
     let wcPlayers = this.state.wcPlayers;
+
+    let wcPlayersCollected = 0;
+    wcPlayers.forEach((wcPlayer) => {
+      let player = false;
+      if(stateHasPlayers) {
+        player = this.state.players.find(
+          (player) => player === wcPlayer.definitionId
+        );
+      }
+      if (player) {
+        wcPlayersCollected++;
+      } 
+    });
 
     // filter by team if needed
     if (this.state.subCollection !== "none") {
@@ -437,7 +457,7 @@ class App extends Component {
         <div id="counts">
           <div id="counts-total">
             <span className="counts-total-label">Collected: </span>
-            <span className="counts-total-value">{this.state.players.length} of {this.state.wcPlayers.length} (
+            <span className="counts-total-value">{wcPlayersCollected} of {this.state.wcPlayers.length} (
              {Math.floor(100 / this.state.wcPlayers.length * this.state.players.length)}%)</span>
           </div>
           <div id="counts-current">
