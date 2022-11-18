@@ -17,12 +17,8 @@ import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 
 import React, { Component } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import axios from "axios";
-
+import { Accordion, AccordionDetails, AccordionSummary, Pagination } from "@mui/material";
 import PlayerCard from "./PlayerCard";
-
-import Select from "react-select";
 
 class App extends Component {
   constructor(props) {
@@ -36,10 +32,13 @@ class App extends Component {
       subCollection: "none",
       rarities: [],
       players: [],
+      currentPage: 1,
     };
 
     this.handleSingleSelect = this.handleSingleSelect.bind(this);
     this.handleSubFilterClick = this.handleSubFilterClick.bind(this);
+    this.handlePageChange = this.handlePageChange.bind(this);
+    this.handlePlayerClick = this.handlePlayerClick.bind(this);
 
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -130,9 +129,15 @@ class App extends Component {
     );
   }
 
+  handlePageChange(event, value) {
+    this.setState({ currentPage: value });
+  }
+
   componentDidMount() {
     // get rarities
-    axios
+    let rarities = require("./rarities.json");
+    this.setState({ rarities: rarities });
+    /* axios
       .get(process.env.REACT_APP_AJAXSERVER + "getRarities.php")
       .then((response) => {
         console.log(response.data);
@@ -140,9 +145,18 @@ class App extends Component {
       })
       .catch((error) => {
         console.log(error);
-      });
+      }); */
     // get wc players
-    axios
+    let wcPlayers = require("./wcPlayers.json");
+    // get distinct wc countries
+    let countries = [];
+    wcPlayers.forEach((player) => {
+      if (!countries.includes(player.nationId)) {
+        countries.push(player.nationId);
+      }
+    });
+    this.setState({ wcPlayers: wcPlayers, wcCountries: countries });
+    /* axios
       .get(process.env.REACT_APP_AJAXSERVER + "getWcPlayers.php")
       .then((response) => {
         console.log(response.data);
@@ -156,7 +170,10 @@ class App extends Component {
         });
         console.log(countries);
         this.setState({ wcPlayers: response.data, wcCountries: countries });
-      });
+      }); */
+
+      // get owned players
+      /* 
       axios
       .post(
         process.env.REACT_APP_AJAXSERVER +
@@ -167,7 +184,11 @@ class App extends Component {
         // manipulate the response here
         let players = response.data;
         this.setState({ players: players });
-      });
+      }); */
+
+    // get owned players from localstorage
+    let players = JSON.parse(localStorage.getItem("players"));
+    this.setState({ players: players });
   }
 
   handleCancelProfile() {
@@ -177,7 +198,26 @@ class App extends Component {
   handleSubFilterClick(event) {
     console.log(event);
     let subCollection = event.target.getAttribute("data-value");
+    if(subCollection === this.state.subCollection) {
+      subCollection = "none";
+    }
     this.setState({ subCollection: subCollection });
+
+  }
+
+  handlePlayerClick(event, definitionId) {
+    let player = definitionId;
+    console.log("clicked player: " + player);
+    let players = this.state.players;
+    if (players.includes(player)) {
+      players = players.filter((item) => item !== player);
+    } else {
+      players.push(player);
+    }
+    console.log("setting players to: " + players);
+    this.setState({ players: players });
+    // saving players to local storage
+    localStorage.setItem("players", JSON.stringify(players));
   }
 
   render() {
@@ -212,19 +252,31 @@ class App extends Component {
     // filter by team if needed
     if (this.state.subCollection !== "none") {
       wcPlayers = wcPlayers.filter((player) => {
-        return player.teamId === this.state.subCollection;
+        return player.nationId === this.state.subCollection;
       });
     }
 
-    // limit array to 23
-    wcPlayers = wcPlayers.slice(0, 40);
+
+    // determine number of pages
+    let pages = Math.ceil(wcPlayers.length / 40);
+
+    // get current page
+    let currentPage = this.state.currentPage;
+
+    // get players for current page
+    wcPlayers = wcPlayers.slice(
+      (currentPage - 1) * 40,
+      currentPage * 40
+    );
 
     wcPlayers.forEach((wcPlayer) => {
       let player = this.state.players.find(
-        (player) => player.definitionId === wcPlayer.definitionId
+        (player) => player === wcPlayer.definitionId
       );
       if (player) {
         wcPlayer.exists = true;
+      } else {
+        wcPlayer.exists = false;
       }
     });
 
@@ -267,14 +319,24 @@ class App extends Component {
           {this.state.collection === "wcplayers" && (
             <div>
               {this.state.wcCountries.map((country) => (
-                <img
+                /* <img alt="country-flag"
                 onClick={this.handleSubFilterClick}
                 data-value={country}
-                  className={"national-team"}
+                  className={"national-team" + (this.state.subCollection === country ? " selected" : "") + (this.state.subCollection !== "none" ? " faded" : "")}
                   src={
                     "https://cdn.futbin.com/content/fifa23/img/clubs/" +
                     country +
                     ".png"
+                  }
+                /> */
+                <img alt="country-flag"
+                onClick={this.handleSubFilterClick}
+                data-value={country}
+                  className={"national-team" + (this.state.subCollection === country ? " selected" : "") + (this.state.subCollection !== "none" ? " faded" : "")}
+                  src={require(
+                    "./assets/flags/f_" +
+                    country +
+                    ".png")
                   }
                 />
               ))}
@@ -287,6 +349,7 @@ class App extends Component {
               return player.exists ? (
 
                 <PlayerCard
+                onClick={(event) => this.handlePlayerClick(event, player.definitionId)}
                 key={player.definitionId}
                   badge={true}
                   small={true}
@@ -303,6 +366,7 @@ class App extends Component {
                 />
             ) : (
               <div
+              onClick={(event) => this.handlePlayerClick(event, player.definitionId)}
                 key={player.definitionId}
                 className={"card__wrapper"}
                 style={{
@@ -314,16 +378,16 @@ class App extends Component {
                   WebkitTransformOriginY: "top",
                 }}
               >
-                  <div className={"card__wrapper__item placeholder"}>
-                    <img
-                      classNAme={"card__wrapper__item__bg"}
+                  <div className={"card__wrapper__item placeholder"} >
+                    <img alt="placeholder"
+                      className={"card__wrapper__item__bg"}
                       src={
                         "https://freakpants.ch/fut/php/cards/placeholder.png"
                       }
                     />
 
-                    <div class="card__wrapper__item__ratings">
-                      <span class="card__wrapper__item__ratings__position">
+                    <div className="card__wrapper__item__ratings">
+                      <span className="card__wrapper__item__ratings__position">
                         {player.mainPosition}
                       </span>
                     </div>
@@ -337,6 +401,17 @@ class App extends Component {
             );
           })}
         </div>
+        {this.state.collection === "wcplayers" && (
+        <div id="pagination">
+          <Pagination
+            count={pages}
+            page={currentPage}
+            onChange={this.handlePageChange}
+            color="primary"
+          />
+        </div>
+        )}
+
       </ThemeProvider>
     );
   }

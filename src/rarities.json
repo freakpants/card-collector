@@ -1,0 +1,219 @@
+[
+  {
+    "id": "150",
+    "rareClass": "dynamicduo",
+    "param": "dynamicduo",
+    "name": "Dynamic Duos",
+    "promo_sort": "0"
+  },
+  {
+    "id": "25",
+    "rareClass": "eoae",
+    "param": "era",
+    "name": "End Of An Era",
+    "promo_sort": "0"
+  },
+  {
+    "id": "51",
+    "rareClass": "flashback",
+    "param": "flashback",
+    "name": "Flashback",
+    "promo_sort": "0"
+  },
+  {
+    "id": "18",
+    "rareClass": "champs",
+    "param": "champs",
+    "name": "FUT Champions",
+    "promo_sort": "0"
+  },
+  {
+    "id": "72",
+    "rareClass": "heroes",
+    "param": "heroes",
+    "name": "Heroes",
+    "promo_sort": "0"
+  },
+  {
+    "id": "12",
+    "rareClass": "icon",
+    "param": "icon",
+    "name": "Icons",
+    "promo_sort": "0"
+  },
+  {
+    "id": "53",
+    "rareClass": "libs",
+    "param": "libs",
+    "name": "Libertadores",
+    "promo_sort": "0"
+  },
+  {
+    "id": "90",
+    "rareClass": "moments",
+    "param": "moments",
+    "name": "Moments",
+    "promo_sort": "0"
+  },
+  {
+    "id": "21",
+    "rareClass": "otw",
+    "param": "otw",
+    "name": "Ones to Watch",
+    "promo_sort": "0"
+  },
+  {
+    "id": "97",
+    "rareClass": "oop",
+    "param": "oop",
+    "name": "Out of Packs",
+    "promo_sort": "0"
+  },
+  {
+    "id": "42",
+    "rareClass": "potm bundes",
+    "param": "potmbundes",
+    "name": "Player of the Month Bundesliga",
+    "promo_sort": "0"
+  },
+  {
+    "id": "115",
+    "rareClass": "potm ere",
+    "param": "potmere",
+    "name": "Player of the Month Eredivisie",
+    "promo_sort": "0"
+  },
+  {
+    "id": "86",
+    "rareClass": "potm laliga",
+    "param": "potmlaliga",
+    "name": "Player of the Month LaLiga Santander",
+    "promo_sort": "0"
+  },
+  {
+    "id": "79",
+    "rareClass": "potm ligue1",
+    "param": "potmligue1",
+    "name": "Player of the Month Ligue 1",
+    "promo_sort": "0"
+  },
+  {
+    "id": "43",
+    "rareClass": "potm prem",
+    "param": "potmprem",
+    "name": "Player of the Month Premier League",
+    "promo_sort": "0"
+  },
+  {
+    "id": "114",
+    "rareClass": "potm seriea",
+    "param": "potmseriea",
+    "name": "Player of the Month Serie A",
+    "promo_sort": "0"
+  },
+  {
+    "id": "1",
+    "rareClass": "gold",
+    "param": "gold",
+    "name": "Rare Gold",
+    "promo_sort": "0"
+  },
+  {
+    "id": "22",
+    "rareClass": "rulebreakers",
+    "param": "rulebreakers",
+    "name": "Rulebreakers",
+    "promo_sort": "4"
+  },
+  {
+    "id": "87",
+    "rareClass": "foundations",
+    "param": "foundations",
+    "name": "Squad Foundations",
+    "promo_sort": "0"
+  },
+  {
+    "id": "91",
+    "rareClass": "storyline",
+    "param": "storyline",
+    "name": "Storyline",
+    "promo_sort": "0"
+  },
+  {
+    "id": "52",
+    "rareClass": "suds",
+    "param": "suds",
+    "name": "Sudamericana",
+    "promo_sort": "0"
+  },
+  {
+    "id": "3",
+    "rareClass": "totw",
+    "param": "totw",
+    "name": "Team of the Week",
+    "promo_sort": "0"
+  },
+  {
+    "id": "50",
+    "rareClass": "ucl rttk",
+    "param": "uclrttk",
+    "name": "UEFA Champions League Road to the Knockouts",
+    "promo_sort": "3"
+  },
+  {
+    "id": "105",
+    "rareClass": "uecl rttk",
+    "param": "ueclrttk",
+    "name": "UEFA Conference League Road to the Knockouts",
+    "promo_sort": "1"
+  },
+  {
+    "id": "46",
+    "rareClass": "uel rttk",
+    "param": "uelrttk",
+    "name": "UEFA Europa League Road to the Knockouts",
+    "promo_sort": "2"
+  },
+  {
+    "id": "146",
+    "rareClass": "wc something",
+    "param": "wcsome",
+    "name": "Winter Cup Something",
+    "promo_sort": "0"
+  },
+  {
+    "id": "133",
+    "rareClass": "wc hero",
+    "param": "wchero",
+    "name": "World Cup Hero",
+    "promo_sort": "0"
+  },
+  {
+    "id": "130",
+    "rareClass": "wc glory",
+    "param": "wcglory",
+    "name": "World Cup Path To Glory",
+    "promo_sort": "0"
+  },
+  {
+    "id": "128",
+    "rareClass": "wc player",
+    "param": "wcplayer",
+    "name": "World Cup Player",
+    "promo_sort": "0"
+  },
+  {
+    "id": "131",
+    "rareClass": "wc star",
+    "param": "wcstar",
+    "name": "World Cup Star",
+    "promo_sort": "0"
+  },
+  {
+    "id": "132",
+    "rareClass": "wc swap",
+    "param": "wcswap",
+    "name": "Worldcup Swap Tokens",
+    "promo_sort": "0"
+  }
+]

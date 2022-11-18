@@ -17,9 +17,7 @@ class PlayerCard extends React.Component {
     const {
       lastName,
       knownAs,
-      console_price,
       rating,
-      weakFoot,
       rareflag,
       teamId,
       playerId,
@@ -34,14 +32,11 @@ class PlayerCard extends React.Component {
       contracts,
       untradeable,
       definitionId,
-      skillMoves,
-      offensiveWorkRate,
-      defensiveWorkRate,
-      min_price,
-      max_price,
       bestQualityImage,
       mainPosition,
     } = this.props.player;
+
+    const { onClick } = this.props;
 
     const { rarities } = this.props;
     let badge =
@@ -49,7 +44,7 @@ class PlayerCard extends React.Component {
     let cardImage = BronzeCommon;
     let rarityClass = "gold";
 
-    const workRates = offensiveWorkRate + "/" + defensiveWorkRate;
+    // const workRates = offensiveWorkRate + "/" + defensiveWorkRate;
 
     if (parseInt(rating) > 74) {
       if (rareflag === "1") {
@@ -126,12 +121,6 @@ class PlayerCard extends React.Component {
           playerId +
           ".png";
         imageClass = "original";
-      case "futbin":
-        src =
-          "https://cdn.futbin.com/content/fifa23/img/players/" +
-          playerId +
-          ".png";
-        imageClass = "original";
         break;
       case "futggDynamic":
         src =
@@ -140,6 +129,14 @@ class PlayerCard extends React.Component {
           ".png";
         imageClass = "custom";
         break;
+      case "futbin":
+      default:
+          src =
+            "https://cdn.futbin.com/content/fifa23/img/players/" +
+            playerId +
+            ".png";
+          imageClass = "original";
+          break;
     }
 
     let cardClass = "";
@@ -153,7 +150,7 @@ class PlayerCard extends React.Component {
       cardClass += " untradeable";
     }
 
-    let formatted_console_price = console_price;
+    /* let formatted_console_price = console_price;
     if (parseInt(console_price) > 999) {
       formatted_console_price =
         (parseInt(console_price) / 1000).toFixed(1) + "K";
@@ -197,7 +194,7 @@ class PlayerCard extends React.Component {
       const range = parseInt(max_price) - parseInt(min_price);
       const $range_diff = parseInt(console_price) - parseInt(min_price);
       prp = "(" + Math.floor(($range_diff / range) * 100) + "%)";
-    }
+    } */
 
     let badgeOrFull = 'e';
     if (this.props.badge) {
@@ -205,13 +202,13 @@ class PlayerCard extends React.Component {
     }
 
     return (
-      <div style={this.props.style} className={"card__wrapper " + (this.props.badge ? "badge" : "")} data-rareflag="79">
+      <div onClick={onClick} style={this.props.style} className={"card__wrapper " + (this.props.badge ? "badge" : "")} data-rareflag="79">
         {parseInt(loaned) > 0 && (
-          <div class="ut-item-player-status--loan">{contracts}</div>
+          <div className="ut-item-player-status--loan">{contracts}</div>
         )}
-        <div class={"card__wrapper__item " + cardClass} >
-          <img
-            class="card__wrapper__item__bg"
+        <div className={"card__wrapper__item " + cardClass} >
+          <img alt="card-background"
+            className="card__wrapper__item__bg"
             src={
               cardImage
                 ? cardImage
@@ -220,132 +217,110 @@ class PlayerCard extends React.Component {
                   "_" + bronzesilvergold + ".png"
             }
           />
-          <img class={"card__wrapper__item__dynamic " + imageClass} src={src} />
-          <div class="card__wrapper__item__ratings">
-            <span class="card__wrapper__item__ratings__rating">
+          <img alt="playerProfile" className={"card__wrapper__item__dynamic " + imageClass} src={src} />
+          <div className="card__wrapper__item__ratings">
+            <span className="card__wrapper__item__ratings__rating">
               {rating}
-              <span class="card__wrapper__item__ratings__rating__diff"></span>
+              <span className="card__wrapper__item__ratings__rating__diff"></span>
             </span>
-            <span class="card__wrapper__item__ratings__position">
+            <span className="card__wrapper__item__ratings__position">
               {mainPosition}
             </span>
-            <div class="card__wrapper__item__ratings__extra">
-              <div class="card__wrapper__item__ratings__divider"></div>
-              <img
+            <div className="card__wrapper__item__ratings__extra">
+              <div className="card__wrapper__item__ratings__divider"></div>
+              <img alt="nationflag"
                 src={nationflag}
-                class="card__wrapper__item__ratings__nation"
+                className="card__wrapper__item__ratings__nation"
               />
-              <div class="card__wrapper__item__ratings__divider"></div>
-              <img src={badge} class="card__wrapper__item__ratings__club" />
+              <div className="card__wrapper__item__ratings__divider"></div>
+              <img alt="club-badge" src={badge} className="card__wrapper__item__ratings__club" />
             </div>
           </div>
-          <div class="card__wrapper__item__name">
+          <div className="card__wrapper__item__name">
             {knownAs !== "" && knownAs !== "---" ? knownAs : lastName}
           </div>
           {!this.props.badge && (
-          <div class="card__wrapper__item__stats">
-            <div class="card__wrapper__item__stats__dividers">
-              <div class="card__wrapper__item__stats__dividers__hor"></div>
-              <div class="card__wrapper__item__stats__dividers__ver"></div>
-              <div class="card__wrapper__item__stats__dividers__horxs"></div>
+          <div className="card__wrapper__item__stats">
+            <div className="card__wrapper__item__stats__dividers">
+              <div className="card__wrapper__item__stats__dividers__hor"></div>
+              <div className="card__wrapper__item__stats__dividers__ver"></div>
+              <div className="card__wrapper__item__stats__dividers__horxs"></div>
             </div>
-            <div class="card__wrapper__item__stats__row">
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+            <div className="card__wrapper__item__stats__row">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {pac}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   PAC
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {dri}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   DRI
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
             </div>
-            <div class="card__wrapper__item__stats__row">
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+            <div className="card__wrapper__item__stats__row">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {sho}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   SHO
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {def}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   DEF
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
             </div>
-            <div class="card__wrapper__item__stats__row">
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+            <div className="card__wrapper__item__stats__row">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {pas}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   PAS
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
-              <div class="card__wrapper__item__stats__row__cell">
-                <span class="card__wrapper__item__stats__row__cell__value">
+              <div className="card__wrapper__item__stats__row__cell">
+                <span className="card__wrapper__item__stats__row__cell__value">
                   {phy}
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__label">
+                <span className="card__wrapper__item__stats__row__cell__label">
                   PHY
                 </span>
-                <span class="card__wrapper__item__stats__row__cell__diff pos"></span>
+                <span className="card__wrapper__item__stats__row__cell__diff pos"></span>
               </div>
             </div>
 
-
-            <div class="card__wrapper__item__pricing">
-              <div>
-                <img
-                  src="https://cdn.futbin.com/design/img/logos/small/ps_blue.png"
-                  title="Console market"
-                />
-                <img
-                  src="https://cdn.futbin.com/design/img/logos/small/xbox_green.png"
-                  title="Console market"
-                />
-                <span class="card__wrapper__item__pricing__price">{formatted_console_price}</span> |
-                <img
-                  src="https://cdn.futbin.com/design/img/logos/small/pc_orange.png"
-                  title="PC market"
-                />
-                <span class="card__wrapper__item__pricing__price"></span>
-              </div>
-              <div class="card__wrapper__item__pricing__pricerange">
-               {price_range}
-              </div>
-            </div>
           </div>
     )}
 
-          <div class="card__wrapper__item__alts"></div>
+          <div className="card__wrapper__item__alts"></div>
           {!this.props.badge && (
-          <div class="card__wrapper__item__extra no-promo">
+          <div className="card__wrapper__item__extra no-promo">
             <span>left</span>
             <span>L/L WR</span>
             <span data-skill-moves-diff="0">
-              4<img src="https://freakpants.ch/fut/php/star.png" title="Star" />{" "}
+              4<img alt="star" src="https://freakpants.ch/fut/php/star.png" title="Star" />{" "}
               SM
             </span>
             <span data-weak-foot-diff="0">
-              4<img src="https://freakpants.ch/fut/php/star.png" title="Star" />{" "}
+              4<img alt="star"  src="https://freakpants.ch/fut/php/star.png" title="Star" />{" "}
               WF
             </span>
           </div>

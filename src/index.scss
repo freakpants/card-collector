@@ -1078,6 +1078,7 @@ label:not(.MuiFormControlLabel-root)::before{
   display: flex;
   flex-wrap: wrap;
   position: absolute;
+  justify-content: center;
 }
 
 .placeholder.card__wrapper__item__name{
@@ -1092,4 +1093,20 @@ label:not(.MuiFormControlLabel-root)::before{
 
 .badge .card__wrapper__item__dynamic.original{
   top: 28.3%;
+}
+
+#pagination{
+  position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: white;
+    padding: 0.5rem
+}
+
+.faded:not(.selected){
+  transform: scale(0.4);
+}
+
+.card__wrapper{
+  cursor: pointer;
 }
