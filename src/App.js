@@ -269,10 +269,14 @@ class App extends Component {
       currentPage * 40
     );
 
+    const stateHasPlayers = this.state.players && this.state.players.length > 0;
     wcPlayers.forEach((wcPlayer) => {
-      let player = this.state.players.find(
-        (player) => player === wcPlayer.definitionId
-      );
+      let player = false;
+      if(stateHasPlayers) {
+        player = this.state.players.find(
+          (player) => player === wcPlayer.definitionId
+        );
+      }
       if (player) {
         wcPlayer.exists = true;
       } else {
