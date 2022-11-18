@@ -212,7 +212,11 @@ class App extends Component {
     if (players && players.length > 0 && players.includes(player)) {
       players = players.filter((item) => item !== player);
     } else {
-      players.push(player);
+      if(players && players.length > 0){
+        players.push(player);
+      } else {
+        players = [player];
+      }
     }
     console.log("setting players to: " + players);
     this.setState({ players: players });
