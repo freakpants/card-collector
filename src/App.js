@@ -35,7 +35,7 @@ class App extends Component {
       rarities: [],
       players: [],
       currentPage: 1,
-      clubSync: true,
+      clubSync: false,
     };
 
     this.handleSingleSelect = this.handleSingleSelect.bind(this);
@@ -103,10 +103,19 @@ class App extends Component {
             players = players.map((player) => {
               return player.definitionId;
             });
+            this.setState({ players: players });
           }
 
+          if(response.data.status === "error") {
+            if(response.data.playerCount === undefined || response.data.playerCount === "0") {
+              console.log("no player data found");
+            } else {
+              console.log(response.data.playerCount + " players found, but no authorization.");
+            }
+          }
+          
 
-          this.setState({ players: players });
+
         }); 
 
         console.log("setting status to logged in");
