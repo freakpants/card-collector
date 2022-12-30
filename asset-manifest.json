@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/card-collector/static/css/main.f357dda1.css",
-    "main.js": "/card-collector/static/js/main.4c7148be.js",
+    "main.js": "/card-collector/static/js/main.73d7e2b6.js",
     "static/media/worldcup_dark.png": "/card-collector/static/media/worldcup_dark.4c82ff050602fbb9a228.png",
     "static/media/cards_bg_e_1_21_0.png": "/card-collector/static/media/cards_bg_e_1_21_0.ebc0d41c65c6b25b034b.png",
     "static/media/MATROSKA.ttf.svg": "/card-collector/static/media/MATROSKA.ttf.36d972b523b1d230880a.svg",
@@ -70,10 +70,10 @@
     "static/media/f_37.png": "/card-collector/static/media/f_37.40403d4414938e661a91.png",
     "index.html": "/card-collector/index.html",
     "main.f357dda1.css.map": "/card-collector/static/css/main.f357dda1.css.map",
-    "main.4c7148be.js.map": "/card-collector/static/js/main.4c7148be.js.map"
+    "main.73d7e2b6.js.map": "/card-collector/static/js/main.73d7e2b6.js.map"
   },
   "entrypoints": [
     "static/css/main.f357dda1.css",
-    "static/js/main.4c7148be.js"
+    "static/js/main.73d7e2b6.js"
   ]
 }
