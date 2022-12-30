@@ -35,7 +35,7 @@ class App extends Component {
       rarities: [],
       players: [],
       currentPage: 1,
-      clubSync: false,
+      clubSync: true,
     };
 
     this.handleSingleSelect = this.handleSingleSelect.bind(this);
@@ -526,6 +526,7 @@ class App extends Component {
         }  else if(existingValue && existingValue.price) {
           futbinPrice = existingValue.price;
         }
+        if(squadMember._metaData){
         return [
           squadMember._metaData.id,
           squadMember.teamId,
@@ -542,6 +543,7 @@ class App extends Component {
           maxRange,
           squadMember
         ];
+        }
       });
       console.log(jsonContent);
       await submitJsonData(jsonContent);
