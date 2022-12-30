@@ -103,7 +103,11 @@ class App extends Component {
             players = players.map((player) => {
               return player.definitionId;
             });
+            console.log("setting players to state");
+            console.log(players);
             this.setState({ players: players });
+          } else {
+            console.log("no players");
           }
 
           if(response.data.status === "error") {
@@ -810,12 +814,14 @@ class App extends Component {
     const stateHasPlayers = this.state.players && this.state.players.length > 0;
     let wcPlayers = this.state.wcPlayers;
 
+    
+
     let wcPlayersCollected = 0;
     wcPlayers.forEach((wcPlayer) => {
       let player = false;
       if(stateHasPlayers) {
         player = this.state.players.find(
-          (player) => player === wcPlayer.definitionId
+          (player) => player === parseInt(wcPlayer.definitionId)
         );
       }
       if (player) {
@@ -834,10 +840,11 @@ class App extends Component {
 
     let currentCollected = 0;
     wcPlayers.forEach((wcPlayer) => {
+      
       let player = false;
       if(stateHasPlayers) {
         player = this.state.players.find(
-          (player) => player === wcPlayer.definitionId
+          (player) => player === parseInt(wcPlayer.definitionId)
         );
       }
       if (player) {
@@ -845,6 +852,19 @@ class App extends Component {
       } 
     });
     
+    wcPlayers.forEach((wcPlayer) => {
+      let player = false;
+      if(stateHasPlayers) {
+        player = this.state.players.find(
+          (player) => player === parseInt(wcPlayer.definitionId)
+        );
+      }
+      if (player) {;
+        wcPlayer.exists = true;
+      } else {
+        wcPlayer.exists = false;
+      }
+    });
 
     // determine number of pages
     let pages = Math.ceil(wcPlayers.length / 40);
@@ -857,21 +877,6 @@ class App extends Component {
       (currentPage - 1) * 40,
       currentPage * 40
     );
-
-   
-    wcPlayers.forEach((wcPlayer) => {
-      let player = false;
-      if(stateHasPlayers) {
-        player = this.state.players.find(
-          (player) => player === wcPlayer.definitionId
-        );
-      }
-      if (player) {
-        wcPlayer.exists = true;
-      } else {
-        wcPlayer.exists = false;
-      }
-    });
 
     return (
       <ThemeProvider theme={theme}>
